@@ -554,9 +554,9 @@ main{
 }
 
 .start-case-section {
-  background: #04070f;
+  background: #ffffff;
   padding: 88px 0 96px;
-  color: #f2f5fb;
+  color: #252a3e;
 }
 
 .start-case-wrap {
@@ -588,6 +588,8 @@ main{
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
   align-items: stretch;
+  position: relative;
+  z-index: 2;
 }
 
 .route-card {
@@ -675,10 +677,11 @@ main{
   width: 238px;
   height: 238px;
   border-radius: 999px;
-  border: 26px solid #f2f2f2;
+  border: 26px solid #F5F5F5;
   left: -86px;
   bottom: -84px;
   pointer-events: none;
+  z-index: 1;
 }
 
 @media (max-width: 900px) {

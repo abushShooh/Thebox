@@ -341,6 +341,116 @@
           </div>
         </div>
       </section>
+
+      <section class="testimonials-section" aria-label="Scoring test and testimonials">
+        <div class="testimonials-wrap">
+          <div class="eligibility-cta">
+            <h2>Not sure if you&apos;re eligible?</h2>
+            <p>Calculate your chances and get detailed feedback from our team</p>
+            <button type="button">
+              <span>✓</span>
+              Take a scoring test
+            </button>
+          </div>
+
+          <h3>Testimonials</h3>
+
+          <div class="testimonial-slider">
+            <button
+              class="testimonial-arrow prev"
+              type="button"
+              id="testimonialPrev"
+              aria-label="Previous testimonial"
+            >
+              &#10094;
+            </button>
+
+            <div class="testimonial-viewport">
+              <div class="testimonial-track" id="testimonialTrack">
+                <article class="testimonial-card">
+                  <div class="testimonial-person">
+                    <img src="../photos/Rectangle 13.svg" alt="Adriano K." />
+                    <h4>Adriano K.</h4>
+                    <div class="testimonial-tags">
+                      <span>Co-Founder</span>
+                      <span>CEO</span>
+                      <span>Game developer</span>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-content">
+                    <p class="testimonial-quote">
+                      I was referred to Immigram by my Ukrainian colleague. What has surprised me the
+                      most? I was amazed how the Immigram Team understood the twists and turns of AI
+                      and algorithms I worked on at companies like Goldman Sachs and Nomura
+                    </p>
+                    <p>
+                      I have a broad experience in academic research with more than 30 published
+                      journal papers and book chapters related to Data Science, Machine Learning,
+                      Statistical Methods, Optimization, and Finance.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="testimonial-person">
+                    <img src="../photos/Rectangle 14.svg" alt="Sophie T." />
+                    <h4>Sophie T.</h4>
+                    <div class="testimonial-tags">
+                      <span>Data scientist</span>
+                      <span>Mentor</span>
+                      <span>Researcher</span>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-content">
+                    <p class="testimonial-quote">
+                      The platform made my route to relocation very transparent. I always understood
+                      what step was next and what document was expected from me.
+                    </p>
+                    <p>
+                      I especially liked how the team translated complex requirements into clear
+                      actions. It saved me weeks of confusion and helped me keep momentum.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="testimonial-person">
+                    <img src="../photos/Rectangle 15.svg" alt="Michael R." />
+                    <h4>Michael R.</h4>
+                    <div class="testimonial-tags">
+                      <span>Product manager</span>
+                      <span>Founder</span>
+                      <span>Strategist</span>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-content">
+                    <p class="testimonial-quote">
+                      We had a tight timeline and still managed to prepare a strong case. The feedback
+                      was practical, fast, and always focused on what truly impacts the outcome.
+                    </p>
+                    <p>
+                      From first review to final submission, everything felt structured and calm. That
+                      confidence was the biggest value for me during the process.
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <button
+              class="testimonial-arrow next"
+              type="button"
+              id="testimonialNext"
+              aria-label="Next testimonial"
+            >
+              &#10095;
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script>
@@ -425,6 +535,37 @@
       })();
 
       (function () {
+        const track = document.getElementById("testimonialTrack");
+        const prevBtn = document.getElementById("testimonialPrev");
+        const nextBtn = document.getElementById("testimonialNext");
+        if (!track || !prevBtn || !nextBtn) return;
+
+        const cards = Array.from(track.querySelectorAll(".testimonial-card"));
+        let index = 0;
+
+        function render() {
+          const card = cards[0];
+          const gap = window.innerWidth <= 900 ? 14 : 24;
+          const cardWidth = card ? card.getBoundingClientRect().width : 0;
+          const shift = (cardWidth + gap) * index;
+          track.style.transform = "translateX(-" + shift + "px)";
+        }
+
+        prevBtn.addEventListener("click", function () {
+          index = index <= 0 ? cards.length - 1 : index - 1;
+          render();
+        });
+
+        nextBtn.addEventListener("click", function () {
+          index = index >= cards.length - 1 ? 0 : index + 1;
+          render();
+        });
+
+        window.addEventListener("resize", render);
+        render();
+      })();
+
+      (function () {
         const selectors = [
           "nav",
           ".containerINfo .itm1",
@@ -442,7 +583,10 @@
           ".platform-wrap > h3",
           ".platform-wrap > .platform-lead",
           ".platform-demo",
-          ".platform-card"
+          ".platform-card",
+          ".eligibility-cta",
+          ".testimonials-wrap > h3",
+          ".testimonial-card"
         ];
 
         const revealItems = Array.from(

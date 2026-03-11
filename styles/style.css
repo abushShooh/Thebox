@@ -194,6 +194,80 @@ main{
   flex: 0 0 auto;
 }
 
+.immigration-section {
+  width: 100%;
+  margin-top: 24px;
+  padding: 70px 0 90px;
+  /* background-color: #06080d; */
+  background-image: url(../photos/secondSectionMain.svg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+.immigration-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.immigration-wrap h2 {
+  font-size: 52px;
+  line-height: 1.12;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 18px;
+}
+
+.immigration-lead {
+  max-width: 760px;
+  font-size: 30px;
+  line-height: 1.35;
+  color: #5b6574;
+  margin-bottom: 56px;
+}
+
+.immigration-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(280px, 520px);
+  align-items: center;
+  column-gap: 140px;
+  margin-bottom: 72px;
+}
+
+.immigration-content h3 {
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 22px;
+}
+
+.immigration-content p {
+  font-size: 41px;
+  line-height: 1.42;
+  color: #5b6574;
+}
+
+.immigration-row.reverse {
+  grid-template-columns: minmax(280px, 520px) minmax(220px, 1fr);
+}
+
+.immigration-card {
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.immigration-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.immigration-row:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 900px) {
 
     body{
@@ -326,5 +400,62 @@ main{
   .logoScroll::-webkit-scrollbar-thumb {
     background: #5EB083;
     border: 2px solid #EEF3F0;
+  }
+
+  .immigration-section {
+    margin-top: 0;
+    padding: 40px 0 52px;
+    background-color: #FFBB8A;
+    background-image: none;
+  }
+
+  .immigration-wrap {
+    padding: 0 20px;
+  }
+
+  .immigration-wrap h2 {
+    font-size: 44px;
+    line-height: 1.12;
+    margin-bottom: 14px;
+    color: #202538;
+  }
+
+  .immigration-lead {
+    font-size: 24px;
+    line-height: 1.45;
+    color: #4f566b;
+    margin-bottom: 30px;
+  }
+
+  .immigration-row,
+  .immigration-row.reverse {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .immigration-content h3 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: #202538;
+  }
+
+  .immigration-content p {
+    font-size: 24px;
+    line-height: 1.42;
+    color: #4f566b;
+  }
+
+  .immigration-row.reverse .immigration-card {
+    order: 2;
+  }
+
+  .immigration-row.reverse p {
+    order: 1;
+  }
+
+  .immigration-card {
+    border-radius: 20px;
   }
 }

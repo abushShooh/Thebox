@@ -1,0 +1,330 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  align-items: center;
+}
+header {
+  padding: 25px 0px;
+  width: 100%;
+  margin: auto;
+  background-image: url(../photos/background_for_header.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  min-height: 620px;
+  height: min(100svh, 860px);
+}
+nav {
+display: flex;
+max-width: 1200px;
+margin: auto;
+align-items: center;
+justify-content: center;
+gap: 250px;
+}
+.element1 img{
+    width: 100px;
+}
+.element2 ul{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+.element2 ul li{
+    cursor: pointer;
+}
+.service {
+    position: relative;
+}
+.service .arrow{
+    display: inline-block;
+    transition: 0.2s ease;
+}
+.service .dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  list-style: none;
+  background: #5EB083;
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+.element2 ul li:hover{
+    color: #5EB083;
+}
+.service .dropdown li {
+  color: #fff;
+  white-space: nowrap;
+}
+.service:hover .dropdown {
+  display: flex;
+}
+.service:hover .arrow {
+  transform: rotate(180deg);
+}
+.element3 button{
+    background: #5EB083;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.element4{
+  display: none;
+}
+.burger-btn{
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.burger-btn img{
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+.containerINfo{
+    padding: 25px 0px;
+    max-width: 1200px;
+    margin-top: 70px !important;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.itm1{
+    display: block;
+    width: 50% !important;
+}
+.itm1 h1{
+    font-size: 70px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+.des{
+    font-size: 28px;
+    color: #5B6574;
+    line-height: 38px;
+    margin-bottom: 10px;
+}
+.itm1 h1 span {
+    color: #5EB083;
+}
+.containerBtn{
+    display: flex;
+    gap: 10px;
+    padding: 30px 0px;
+}
+.containerBtn p{
+    font-size: 15px;
+    line-height: 40px;
+    color: #5B6574;
+}
+.containerBtn button{
+    background-color: #FFBB8A;
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+    padding: 25px 40px;
+}
+.containerBtn button:hover{
+    background-color: transparent;
+    border: 2px solid #FFBB8A !important;
+    color: #FFBB8A;
+    cursor: pointer;
+    border-radius: 30px;
+    padding: 25px 40px;
+}
+.itm2{
+    width: 40%;
+
+}
+
+main{
+    width: 100%;
+    margin: auto;
+}
+.logoScroll{
+    max-width: 1050px;
+    margin: auto;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-gutter: stable both-edges;
+    padding: 6px 12px 14px;
+    scrollbar-width: none;
+}
+
+.logoScroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.logoScroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.logoScroll::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+  border: 0;
+}
+
+.logoScroll img {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 900px) {
+
+    body{
+        background-color: #FFBB8A !important;
+    }
+  header {
+    background-color: white !important  ;
+    padding: 0px 0px;
+    background-image: url(../photos/secondBgforheader.svg);
+    width: 100%;
+    min-height: 540px;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    margin: auto;
+    background-position: top left;
+  }
+
+  nav {
+    max-width: 100%;
+    padding: 0 14px;
+    gap: 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+
+  .element2 {
+    display: none;
+  }
+
+  .element1 img {
+    width: 120px;
+  }
+
+  .element3 {
+    justify-self: center;
+  }
+
+  .element3 button {
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 28px;
+  }
+
+  .element4 {
+    display: block;
+    justify-self: end;
+  }
+
+  .containerINfo{
+    max-width: 100%;
+    background-color: #FFBB8A;
+    display: block;
+    margin-top: clamp(370px, 28vh, 280px) !important;
+  }
+
+  .itm1{
+    width: 100% !important;
+  }
+
+  .itm1 h1{
+    font-size: 48px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .des{
+    font-size: 24px;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+
+  .containerBtn{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0 0;
+  }
+
+  .containerBtn button{
+    background-color: #fff;
+    color: #E8B792;
+    /* padding: 14px 24px; */
+    margin: 0 auto;
+    border: none;
+    transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .containerBtn button:hover{
+    border: 2px solid #fff !important;
+    color: #fff;
+    background-color: transparent;
+  }
+
+  .containerBtn p{
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+    width: 100%;
+  }
+
+  .itm2{
+    display: none;
+  }
+
+  main{
+    padding: 0 0 26px;
+    margin-top: 0;
+  }
+
+  .logoScroll{
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 0 14px 12px;
+    scrollbar-width: auto;
+    scrollbar-color: #5EB083 #EEF3F0;
+  }
+
+  .logoScroll::-webkit-scrollbar {
+    height: 8px;
+    width: auto;
+  }
+
+  .logoScroll::-webkit-scrollbar-track {
+    background: #EEF3F0;
+  }
+
+  .logoScroll::-webkit-scrollbar-thumb {
+    background: #5EB083;
+    border: 2px solid #EEF3F0;
+  }
+}

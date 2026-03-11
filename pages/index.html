@@ -123,6 +123,103 @@
           </div>
         </div>
       </section>
+
+      <section class="relocated-section" aria-label="Who has relocated section">
+        <div class="relocated-wrap">
+          <h2>Who has relocated with the help of Immigram?</h2>
+          <p class="relocated-lead">You can be next! Start your relocation journey now</p>
+
+          <div class="relocated-slider" id="relocatedSlider">
+            <button class="slider-arrow prev" type="button" id="relocatedPrev" aria-label="Previous slide">
+              &#10094;
+            </button>
+
+            <div class="relocated-viewport">
+              <div class="relocated-track" id="relocatedTrack">
+                <article class="relocated-card">
+                  <img src="../photos/Rectangle 13.svg" alt="Developer" />
+                  <p>Developer</p>
+                </article>
+                <article class="relocated-card">
+                  <img src="../photos/Rectangle 14.svg" alt="Data scientists" />
+                  <p>Data scientists</p>
+                </article>
+                <article class="relocated-card">
+                  <img src="../photos/Rectangle 15.svg" alt="UI designer" />
+                  <p>UI designer</p>
+                </article>
+                <article class="relocated-card">
+                  <img src="../photos/Rectangle 16.svg" alt="Game developer" />
+                  <p>Game developer</p>
+                </article>
+                <article class="relocated-card">
+                  <img src="../photos/Rectangle 17.svg" alt="Product manager" />
+                  <p>Product manager</p>
+                </article>
+              </div>
+            </div>
+
+            <button class="slider-arrow next" type="button" id="relocatedNext" aria-label="Next slide">
+              &#10095;
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <script>
+      (function () {
+        const track = document.getElementById("relocatedTrack");
+        const prevBtn = document.getElementById("relocatedPrev");
+        const nextBtn = document.getElementById("relocatedNext");
+        if (!track || !prevBtn || !nextBtn) return;
+
+        const cards = Array.from(track.querySelectorAll(".relocated-card"));
+        let index = 0;
+        let perView = 4;
+
+        function getPerView() {
+          if (window.innerWidth <= 600) return 1;
+          if (window.innerWidth <= 900) return 2;
+          if (window.innerWidth <= 1280) return 3;
+          return 4;
+        }
+
+        function updateArrows() {
+          prevBtn.disabled = false;
+          nextBtn.disabled = false;
+        }
+
+        function render() {
+          perView = getPerView();
+          const maxIndex = Math.max(0, cards.length - perView);
+          if (index > maxIndex) index = maxIndex;
+          if (index < 0) index = 0;
+
+          const card = cards[0];
+          const gap = window.innerWidth <= 900 ? 12 : 24;
+          const cardWidth = card ? card.getBoundingClientRect().width : 0;
+          const shift = (cardWidth + gap) * index;
+          track.style.transform = "translateX(-" + shift + "px)";
+
+          updateArrows();
+        }
+
+        prevBtn.addEventListener("click", function () {
+          const maxIndex = Math.max(0, cards.length - perView);
+          index = index <= 0 ? maxIndex : index - 1;
+          render();
+        });
+
+        nextBtn.addEventListener("click", function () {
+          const maxIndex = Math.max(0, cards.length - perView);
+          index = index >= maxIndex ? 0 : index + 1;
+          render();
+        });
+
+        window.addEventListener("resize", render);
+        render();
+      })();
+    </script>
   </body>
 </html>

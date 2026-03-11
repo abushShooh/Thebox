@@ -17,8 +17,16 @@
           <ul>
             <li>Home</li>
             <li class="service">
-              Services <span class="arrow">▾</span>
-              <ul class="dropdown">
+              <button
+                class="service-btn"
+                type="button"
+                aria-expanded="false"
+                aria-controls="servicesDropdown"
+                id="servicesBtn"
+              >
+                Services <span class="arrow" aria-hidden="true">▾</span>
+              </button>
+              <ul class="dropdown" id="servicesDropdown">
                 <li>Global Talent Visa</li>
                 <li>Post-relocation</li>
                 <li>Settlement in the UK</li>
@@ -32,7 +40,14 @@
           <button><span> ✓ </span>Take a scoring test</button>
         </div>
         <div class="items element4">
-          <button class="burger-btn" type="button" aria-label="Open menu">
+          <button
+            class="burger-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+            id="burgerBtn"
+          >
             <img src="../photos/burgerMenu.svg" alt="" />
           </button>
         </div>
@@ -56,6 +71,28 @@
         <div class="itm2"></div>
       </div>
     </header>
+    <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <button class="mobile-close" type="button" aria-label="Close menu" id="mobileCloseBtn">
+        &#10005;
+      </button>
+
+      <ul class="mobile-links">
+        <li><a href="#">Home</a></li>
+        <li class="mobile-services open" id="mobileServices">
+          <button class="mobile-services-btn" type="button" aria-expanded="true">
+            Services <span class="mobile-chevron" aria-hidden="true"></span>
+          </button>
+          <ul class="mobile-submenu">
+            <li><a href="#">Global Talent Visa</a></li>
+            <li><a href="#">Post-relocation</a></li>
+            <li><a href="#">Settlement in the UK</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </aside>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
     <main>
       <section class="logoScroll">
         <img src="../photos/Rectangle 1.svg" alt="" />
@@ -169,6 +206,33 @@
 
     <script>
       (function () {
+        const serviceItem = document.querySelector(".service");
+        const serviceBtn = document.getElementById("servicesBtn");
+
+        if (serviceItem && serviceBtn) {
+          serviceBtn.addEventListener("click", function (event) {
+            event.stopPropagation();
+            const isOpen = serviceItem.classList.toggle("open");
+            serviceBtn.setAttribute("aria-expanded", String(isOpen));
+          });
+
+          document.addEventListener("click", function (event) {
+            if (!serviceItem.contains(event.target)) {
+              serviceItem.classList.remove("open");
+              serviceBtn.setAttribute("aria-expanded", "false");
+            }
+          });
+
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+              serviceItem.classList.remove("open");
+              serviceBtn.setAttribute("aria-expanded", "false");
+            }
+          });
+        }
+      })();
+
+      (function () {
         const track = document.getElementById("relocatedTrack");
         const prevBtn = document.getElementById("relocatedPrev");
         const nextBtn = document.getElementById("relocatedNext");
@@ -219,6 +283,101 @@
 
         window.addEventListener("resize", render);
         render();
+      })();
+
+      (function () {
+        const selectors = [
+          "nav",
+          ".containerINfo .itm1",
+          ".logoScroll",
+          ".immigration-wrap > h2",
+          ".immigration-wrap > .immigration-lead",
+          ".immigration-row",
+          ".relocated-wrap > h2",
+          ".relocated-wrap > .relocated-lead",
+          ".relocated-card"
+        ];
+
+        const revealItems = Array.from(
+          document.querySelectorAll(selectors.join(","))
+        );
+
+        if (!revealItems.length) return;
+
+        revealItems.forEach(function (element, index) {
+          element.classList.add("reveal-on-scroll");
+          element.style.setProperty("--reveal-delay", String((index % 4) * 90) + "ms");
+        });
+
+        const observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+              } else {
+                entry.target.classList.remove("in-view");
+              }
+            });
+          },
+          {
+            threshold: 0.2,
+            rootMargin: "0px 0px -8% 0px"
+          }
+        );
+
+        revealItems.forEach(function (element) {
+          observer.observe(element);
+        });
+      })();
+
+      (function () {
+        const burgerBtn = document.getElementById("burgerBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const closeBtn = document.getElementById("mobileCloseBtn");
+        const overlay = document.getElementById("mobileOverlay");
+        const mobileServices = document.getElementById("mobileServices");
+        const servicesBtn = mobileServices
+          ? mobileServices.querySelector(".mobile-services-btn")
+          : null;
+
+        if (!burgerBtn || !mobileMenu || !closeBtn || !overlay || !servicesBtn) return;
+
+        function openMenu() {
+          mobileMenu.classList.add("open");
+          overlay.classList.add("show");
+          document.body.classList.add("menu-open");
+          burgerBtn.setAttribute("aria-expanded", "true");
+          mobileMenu.setAttribute("aria-hidden", "false");
+        }
+
+        function closeMenu() {
+          mobileMenu.classList.remove("open");
+          overlay.classList.remove("show");
+          document.body.classList.remove("menu-open");
+          burgerBtn.setAttribute("aria-expanded", "false");
+          mobileMenu.setAttribute("aria-hidden", "true");
+        }
+
+        burgerBtn.addEventListener("click", openMenu);
+        closeBtn.addEventListener("click", closeMenu);
+        overlay.addEventListener("click", closeMenu);
+
+        servicesBtn.addEventListener("click", function () {
+          const isOpen = mobileServices.classList.toggle("open");
+          servicesBtn.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 900) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && mobileMenu.classList.contains("open")) {
+            closeMenu();
+          }
+        });
       })();
     </script>
   </body>

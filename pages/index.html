@@ -522,6 +522,44 @@
       </section>
     </main>
 
+    <footer class="site-footer" aria-label="Footer">
+      <div class="footer-wrap">
+        <div class="footer-brand">
+          <img src="../photos/logo2.svg" alt="uRelocation" />
+          <p>
+            All immigration advice is provided by OISC regulated partner. Ref No. F202100337
+          </p>
+        </div>
+
+        <nav class="footer-menu" aria-label="Footer menu">
+          <h4>Main menu</h4>
+          <a class="active" href="#">Home</a>
+          <a href="#">Services <span class="footer-chevron" aria-hidden="true"></span></a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </nav>
+
+        <div class="footer-address">
+          <h4>Address</h4>
+          <p>132-134 Lots Rd, Chelsea, London SW10 0RJ</p>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow us</h4>
+          <div class="footer-social-links">
+            <a href="#" aria-label="LinkedIn"><img src="../photos/image 3 (Traced).svg" alt="" /></a>
+            <a href="#" aria-label="Facebook"><img src="../photos/image 4 (Traced).svg" alt="" /></a>
+            <a href="#" aria-label="Instagram"><img src="../photos/image 5 (Traced).svg" alt="" /></a>
+            <a href="#" aria-label="Telegram"><img src="../photos/image 6 (Traced).svg" alt="" /></a>
+          </div>
+        </div>
+      </div>
+
+      <button class="footer-top-btn" type="button" id="footerTopBtn" aria-label="Back to top">
+        <span aria-hidden="true"></span>
+      </button>
+    </footer>
+
     <script>
       (function () {
         const serviceItem = document.querySelector(".service");
@@ -662,6 +700,18 @@
       })();
 
       (function () {
+        const topBtn = document.getElementById("footerTopBtn");
+        if (!topBtn) return;
+
+        topBtn.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
+      })();
+
+      (function () {
         const selectors = [
           "nav",
           ".containerINfo .itm1",
@@ -684,7 +734,8 @@
           ".testimonials-wrap > h3",
           ".testimonial-card",
           ".faq-wrap > h2",
-          ".faq-item"
+          ".faq-item",
+          ".site-footer"
         ];
 
         const revealItems = Array.from(

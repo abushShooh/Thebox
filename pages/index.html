@@ -451,6 +451,75 @@
           </div>
         </div>
       </section>
+
+      <section class="faq-section" aria-label="Frequently asked questions">
+        <div class="faq-wrap">
+          <h2>FAQ</h2>
+
+          <div class="faq-list" id="faqList">
+            <article class="faq-item open">
+              <button class="faq-question" type="button" aria-expanded="true">
+                <span>What does a Global Talent Visa offer?</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                <span>Who can apply for the Global Talent Visa?</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                <span>What does a Global Talent Visa offer?</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis
+                  in faucibus orci luctus et ultrices posuere cubilia curae; Integer ut libero
+                  scelerisque, vulputate nisl vitae, tempor arcu. Curabitur feugiat sem id risus
+                  efficitur, in accumsan sem posuere.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget
+                  dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                <span>What does Immigram offer?</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur
+                  purus sit amet fermentum. Maecenas faucibus mollis interdum. Donec id elit non mi
+                  porta gravida at eget metus.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script>
@@ -566,6 +635,33 @@
       })();
 
       (function () {
+        const faqList = document.getElementById("faqList");
+        if (!faqList) return;
+
+        const items = Array.from(faqList.querySelectorAll(".faq-item"));
+
+        items.forEach(function (item) {
+          const button = item.querySelector(".faq-question");
+          if (!button) return;
+
+          button.addEventListener("click", function () {
+            const isOpen = item.classList.contains("open");
+
+            items.forEach(function (entry) {
+              entry.classList.remove("open");
+              const btn = entry.querySelector(".faq-question");
+              if (btn) btn.setAttribute("aria-expanded", "false");
+            });
+
+            if (!isOpen) {
+              item.classList.add("open");
+              button.setAttribute("aria-expanded", "true");
+            }
+          });
+        });
+      })();
+
+      (function () {
         const selectors = [
           "nav",
           ".containerINfo .itm1",
@@ -586,7 +682,9 @@
           ".platform-card",
           ".eligibility-cta",
           ".testimonials-wrap > h3",
-          ".testimonial-card"
+          ".testimonial-card",
+          ".faq-wrap > h2",
+          ".faq-item"
         ];
 
         const revealItems = Array.from(
